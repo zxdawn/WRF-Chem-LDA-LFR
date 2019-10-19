@@ -3694,7 +3694,16 @@ BENCH_START(micro_driver_tim)
       &        ,height=grid%height                                         &
       &        ,tempc=grid%tempc                                         &
       &        ,ccn_conc=grid%ccn_conc                                   & ! RAS
-
+!++ LYY LDA ++
+      &        ,ldacheck=grid%ldacheck,lda_opt=grid%lda_opt        &
+      &        ,ldaa=grid%ldaa,ldab=grid%ldab,ldac=grid%ldac,ldad=grid%ldad &
+      &        ,ldarhmax=grid%ldarhmax,ldarhtd=grid%ldarhtd &
+      &        ,ldatmin=grid%ldatmin,ldatmax=grid%ldatmax &
+      &        ,ldarhtd_damp=grid%ldarhtd_damp  &
+      &        ,lda_start_h=grid%lda_start_h,lda_start_min=grid%lda_start_min &
+      &        ,lda_end_h=grid%lda_end_h,lda_end_min=grid%lda_end_min &
+      &        ,lda_flash_min=grid%lda_flash_min &
+!-- LYY LDA --
                                                                           )
 BENCH_END(micro_driver_tim)
 

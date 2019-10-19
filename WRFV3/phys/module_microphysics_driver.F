@@ -90,7 +90,12 @@ SUBROUTINE microphysics_driver(                                          &
                       ,TH_OLD                                            &
                       ,QV_OLD                                            &
                       ,xlat,xlong,ivgtyp                                 &
-
+!++ LYY LDA ++
+                      ,ldacheck,lda_opt,ldaa,ldab,ldac,ldad             &
+                      ,ldarhmax,ldatmin,ldatmax,ldarhtd,ldarhtd_damp    &
+                      ,lda_start_h,lda_start_min,lda_end_h,lda_end_min  &
+                      ,lda_flash_min                                    &
+!-- LYY LDA --
                                                    )
 ! Framework
 #if(NMM_CORE==1)
@@ -125,7 +130,9 @@ SUBROUTINE microphysics_driver(                                          &
 #endif
 
 ! *** add new modules of schemes here
-
+!++ LYY LDA ++
+   USE module_lda
+!-- LYY LDA --
    USE module_mp_kessler
    USE module_mp_lin
    USE module_mp_sbu_ylin
@@ -535,6 +542,14 @@ REAL, DIMENSION( ims:ime, kms:kme, jms:jme ),                        &
                  re_cloud, re_ice, re_snow
    INTEGER, INTENT(IN):: has_reqc, has_reqi, has_reqs
 !  REAL , DIMENSION( ims:ime , jms:jme ), OPTIONAL, INTENT(INOUT) :: lwp
+!++ LYY LDA ++
+   REAL, DIMENSION(ims:ime,jms:jme ),OPTIONAL, INTENT(INOUT) ::ldacheck !LYY LDA
+   REAL, INTENT(INOUT) ::ldaa,ldab,ldac,ldad &
+                      ,lda_start_h,lda_start_min,lda_end_h,lda_end_min &
+                      ,ldarhmax,ldarhtd,ldatmin,ldatmax,ldarhtd_damp,lda_flash_min   !LYY LDA
+   INTEGER, OPTIONAL, INTENT(IN) :: lda_opt                  !LYY LDA
+   REAL :: ldatstart,ldatend,ldatreal
+!-- LYY LDA --
 
 ! LOCAL  VAR
 
@@ -617,7 +632,6 @@ REAL, DIMENSION( ims:ime, kms:kme, jms:jme ),                        &
             ,IMS=ims,IME=ime, JMS=jms,JME=jme, KMS=kms,KME=kme &
             ,ITS=its,ITE=ite, JTS=jts,JTE=jte, KTS=kts,KTE=kte &
             )
-
    ELSE
 #endif
 
@@ -1877,10 +1891,31 @@ REAL, DIMENSION( ims:ime, kms:kme, jms:jme ),                        &
          CALL wrf_error_fatal ( wrf_err_message )
 
       END SELECT micro_select
-
-   ENDDO
    !$OMP END PARALLEL DO
 
+!++ LYY LDA ++
+      IF (PRESENT(ldacheck)) THEN
+      if (lda_opt == 1) then
+      ldatstart = lda_start_h*3600+lda_start_min*60
+      ldatend = lda_end_h*3600+lda_end_min*60
+      ldatreal = itimestep*dt
+      if (ldatreal.ge.ldatstart.and.ldatreal.le.ldatend) then
+       call lda(  QV=qv_curr(its:ite,kts:kte,jts:jte) &
+                 ,QG=qg_curr(its:ite,kts:kte,jts:jte) &
+                 ,P=p8w(its:ite,kts:kte,jts:jte) &
+                 ,T=t8w(its:ite,kts:kte,jts:jte) &
+                 ,LDACHECK=ldacheck(its:ite,jts:jte) &
+                 ,ITT=ite-its+1,JTT=jte-jts+1,KTT=kte-kts+1 &
+                 ,LDAA=ldaa,LDAB=ldab,LDAC=ldac,LDAD=ldad,LDARHMAX=ldarhmax &
+                 ,LDARHTD=ldarhtd,LDATMIN=ldatmin,LDATMAX=ldatmax &
+                 ,LDARHTD_DAMP=ldarhtd_damp,LDA_FLASH_MIN=lda_flash_min &
+                )
+      endif
+      endif
+      ENDIF
+!-- LYY LDA --
+
+   ENDDO
 #ifdef XEON_OPTIMIZED_WSM5
    ENDIF
 #endif

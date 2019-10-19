@@ -162,7 +162,7 @@ state    real   hgttrop        ij       dyn_em      1        -     i1  "HGTTROP"
 state    real   pmaxw          ij       dyn_em      1        -     i1  "PMAXW"      "Pressure of the max wind speed"     "Pa"
 state    real   pmaxwnn        ij       dyn_em      1        -     i1  "PMAXWNN"    "PMAXW, nearest neighbor interp"     "Pa"
 state    real   ptrop          ij       dyn_em      1        -     i1  "PTROP"      "Pressure of the tropopause"         "Pa"
-state    real   ptropnn        ij       dyn_em      1        -     i1  "PTROPNN"    "PTROP, nearest neighbor interp      "Pa"
+state    real   ptropnn        ij       dyn_em      1        -     i1  "PTROPNN"    "PTROP, nearest neighbor interp"      "Pa"
 state    real   tmaxw          ij       dyn_em      1        -     i1  "TMAXW"      "Temperature of the max wind speed"  "K"
 state    real   ttrop          ij       dyn_em      1        -     i1  "TTROP"      "Temperature of the tropopause"      "K"
 state    real   umaxw          ij       dyn_em      1        X     i1  "UMAXW"      "U-component of the max wind speed"  "m s-1"
@@ -2224,6 +2224,23 @@ rconfig   logical use_rap_aero_icbc       namelist,physics      1              .
 # The following two options are hooked into various microphysics schemes to allow for ensemble perturbations of CCN and hail/graupel PSDs - GAC (AFWA)
 rconfig   real    ccn_conc                namelist,physics      1           1.0E8      h     "ccn_conc"                 "CCN concentration"                                                             "# m-3"
 rconfig   integer hail_opt                namelist,physics      1              0       rh    "hail_opt"                 "Hail/Graupel switch, 1:hail, 0:graupel"                                        ""
+#++ LYY LDA ++
+rconfig  real   LDAA            namelist,physics     1    0.95    rh      "LDA_A"  "LDA_A"  ""
+rconfig  real   LDAB            namelist,physics     1    0.2     rh      "LDA_B"  "LDA_B"  ""
+rconfig  real   LDAC            namelist,physics     1    0.01     rh      "LDA_C"  "LDA_C"  ""
+rconfig  real   LDAD            namelist,physics     1    0.25     rh      "LDA_D"  "LDA_D"  ""
+rconfig  real   LDARHMAX       namelist,physics     1    0        rh      "LDA_RH_MAX" "LDA_RH_MAX" ""
+rconfig  real   LDARHTD         namelist,physics     1    0.95     rh      "LDA_RH_THRESHOLD"  "LDA_RH_THRESHOLD"  ""
+rconfig  real   LDATMIN         namelist,physics     1    253.15   rh      "LDA_TMIN"  "LDA_TMIN"  "K"
+rconfig  real   LDATMAX         namelist,physics     1    273.15   rh      "LDA_TMAX"  "LDA_TMAX"  "K"
+rconfig  real   LDARHTD_DAMP         namelist,physics     1    0.95     rh      "LDA_DAMP_RH_THRESHOLD"  "LDA_DAMP_RH_THRESHOLD"  ""
+rconfig  integer   LDA_OPT         namelist,physics     1    0     rh      "LDA_OPT"   ""   ""
+rconfig  real   LDA_START_H        namelist,physics     1    0     rh      "LDA_START_H"   "LDA_START_H"   ""
+rconfig  real   LDA_START_MIN        namelist,physics     1    0     rh      "LDA_START_MIN"   "LDA_START_MIN"   ""
+rconfig  real   LDA_END_H        namelist,physics     1    0     rh      "LDA_END_H"   "LDA_END_H"   ""
+rconfig  real   LDA_END_MIN        namelist,physics     1    0     rh      "LDA_END_MIN"   "LDA_END_MIN"   ""
+rconfig  real   LDA_FLASH_MIN       namelist,physics     1    0     rh      "LDA_FLASH_MIN"   "LDA_FLASH_MIN"  ""
+#-- LYY LDA -- 
 
 # For Noah-MP
 rconfig   integer dveg        namelist,noah_mp      1           4         h    "dveg"     "dynamic vegetation (1 -> off ; 2 -> on)"   ""

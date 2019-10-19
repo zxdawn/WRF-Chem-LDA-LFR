@@ -28,7 +28,24 @@ state   real   lakemask            ij    misc          1     -     i012rhd=(inte
 #state    real   SST              ij    misc        1         -     i01245rh05d=(interp_mask_field:lu_index,iswater)f=(p2c)   "SST"              "SEA SURFACE TEMPERATURE" "K"
 state    real   SST              ij     misc        1         -     i01245rh05d=(interp_mask_field:lu_index,iswater)   "SST"              "SEA SURFACE TEMPERATURE" "K"
 state    real   SST_INPUT        ij     misc        1         -     rh   "SST_INPUT"              "SEA SURFACE TEMPERATURE FROM WRFLOWINPUT FILE" "K"
-
+#++ LYY LDA++
+state    real   LDACHECK         ij     misc        1         -   i8rh   "LDACHECK" "LDACHECK"  ""
+rconfig  real   LDAA            namelist,physics     1    0.95    rh      "LDA_A"  "LDA_A"  ""
+rconfig  real   LDAB            namelist,physics     1    0.2     rh      "LDA_B"  "LDA_B"  ""
+rconfig  real   LDAC            namelist,physics     1    0.01     rh      "LDA_C"  "LDA_C"  ""
+rconfig  real   LDAD            namelist,physics     1    0.25     rh      "LDA_D"  "LDA_D"  ""
+rconfig  real   LDARHMAX       namelist,physics     1    0        rh      "LDA_RH_MAX" "LDA_RH_MAX" ""
+rconfig  real   LDARHTD         namelist,physics     1    0.95     rh      "LDA_RH_THRESHOLD"  "LDA_RH_THRESHOLD"  ""
+rconfig  real   LDATMIN         namelist,physics     1    253.15   rh      "LDA_TMIN"  "LDA_TMIN"  "K"
+rconfig  real   LDATMAX         namelist,physics     1    273.15   rh      "LDA_TMAX"  "LDA_TMAX"  "K"
+rconfig  real   LDARHTD_DAMP         namelist,physics     1    0.95     rh      "LDA_DAMP_RH_THRESHOLD"  "LDA_DAMP_RH_THRESHOLD"  ""
+rconfig  integer   LDA_OPT         namelist,physics     1    0     rh      "LDA_OPT"   ""   "" 
+rconfig  real   LDA_START_H        namelist,physics     1    0     rh      "LDA_START_H"   "LDA_START_H"   ""
+rconfig  real   LDA_START_MIN        namelist,physics     1    0     rh      "LDA_START_MIN"   "LDA_START_MIN"   ""
+rconfig  real   LDA_END_H        namelist,physics     1    0     rh      "LDA_END_H"   "LDA_END_H"   ""
+rconfig  real   LDA_END_MIN        namelist,physics     1    0     rh      "LDA_END_MIN"   "LDA_END_MIN"   ""
+rconfig  real   LDA_FLASH_MIN       namelist,physics     1    0     rh      "LDA_FLASH_MIN"   "LDA_FLASH_MIN"  ""
+#-- LYY LDA --
 
 # Registry entries that are exclusive to Registry.EM
 

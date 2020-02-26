@@ -3807,7 +3807,15 @@ BENCH_START(micro_driver_tim)
       &        ,WACT=grid%WACT,CCN1_GS=grid%CCN1_GS,CCN2_GS=grid%CCN2_GS,CCN3_GS=grid%CCN3_GS  &
       &        ,CCN4_GS=grid%CCN4_GS,CCN5_GS=grid%CCN5_GS,CCN6_GS=grid%CCN6_GS &
       &        ,CCN7_GS=grid%CCN7_GS,NR_CU=grid%NR_CU,QR_CU=grid%QR_CU,NS_CU=grid%NS_CU &
-      &        ,QS_CU=grid%QS_CU,CU_UAF=grid%CU_UAF,mskf_refl_10cm=grid%mskf_refl_10cm)
+      &        ,QS_CU=grid%QS_CU,CU_UAF=grid%CU_UAF,mskf_refl_10cm=grid%mskf_refl_10cm &
+      &        ,ldacheck=grid%ldacheck,lda_opt=grid%lda_opt        &
+      &        ,ldaa=grid%ldaa,ldab=grid%ldab,ldac=grid%ldac,ldad=grid%ldad &
+      &        ,ldarhmax=grid%ldarhmax,ldarhtd=grid%ldarhtd &
+      &        ,ldatmin=grid%ldatmin,ldatmax=grid%ldatmax &
+      &        ,ldarhtd_damp=grid%ldarhtd_damp  &
+      &        ,lda_start_h=grid%lda_start_h,lda_start_min=grid%lda_start_min &
+      &        ,lda_end_h=grid%lda_end_h,lda_end_min=grid%lda_end_min &
+      &        ,lda_flash_min=grid%lda_flash_min)
                                                                           
 BENCH_END(micro_driver_tim)
 

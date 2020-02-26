@@ -138,6 +138,10 @@ SUBROUTINE microphysics_driver(                                          &
                       ,CCN3_GS,CCN4_GS,CCN5_GS,CCN6_GS,CCN7_GS           &
                       ,NR_CU,QR_CU,NS_CU,QS_CU,CU_UAF,mskf_refl_10cm     &
 # endif
+                      ,ldacheck,lda_opt,ldaa,ldab,ldac,ldad             &
+                      ,ldarhmax,ldatmin,ldatmax,ldarhtd,ldarhtd_damp    &
+                      ,lda_start_h,lda_start_min,lda_end_h,lda_end_min  &
+                      ,lda_flash_min                                    &
                                                                          )
 
 ! Framework
@@ -232,6 +236,9 @@ SUBROUTINE microphysics_driver(                                          &
 ! For checking model timestep is history time (for radar reflectivity)
    USE module_utility, ONLY: WRFU_Clock, WRFU_Alarm
    USE module_domain, ONLY : HISTORY_ALARM, Is_alarm_tstep
+
+! For lightning assimilation
+   USE module_lda
 
 !----------------------------------------------------------------------
    ! This driver calls subroutines for the microphys.
@@ -710,6 +717,13 @@ REAL, DIMENSION( ims:ime, kms:kme, jms:jme ),                        &
 # endif
 
 !  REAL , DIMENSION( ims:ime , jms:jme ), OPTIONAL, INTENT(INOUT) :: lwp
+
+   REAL, DIMENSION(ims:ime,jms:jme ),OPTIONAL, INTENT(INOUT) ::ldacheck
+   REAL, INTENT(INOUT) ::ldaa,ldab,ldac,ldad &
+                      ,lda_start_h,lda_start_min,lda_end_h,lda_end_min &
+                      ,ldarhmax,ldarhtd,ldatmin,ldatmax,ldarhtd_damp,lda_flash_min
+   INTEGER, OPTIONAL, INTENT(IN) :: lda_opt
+   REAL :: ldatstart,ldatend,ldatreal
 
 ! LOCAL  VAR
 
@@ -2712,6 +2726,26 @@ REAL, DIMENSION( ims:ime, kms:kme, jms:jme ),                        &
 
    ENDDO
    !$OMP END PARALLEL DO
+
+   IF (PRESENT(ldacheck)) THEN
+   if (lda_opt == 1) then
+   ldatstart = lda_start_h*3600+lda_start_min*60
+   ldatend = lda_end_h*3600+lda_end_min*60
+   ldatreal = itimestep*dt
+   if (ldatreal.ge.ldatstart.and.ldatreal.le.ldatend) then
+    call lda(  QV=qv_curr(its:ite,kts:kte,jts:jte) &
+              ,QG=qg_curr(its:ite,kts:kte,jts:jte) &
+              ,P=p8w(its:ite,kts:kte,jts:jte) &
+              ,T=t8w(its:ite,kts:kte,jts:jte) &
+              ,LDACHECK=ldacheck(its:ite,jts:jte) &
+              ,ITT=ite-its+1,JTT=jte-jts+1,KTT=kte-kts+1 &
+              ,LDAA=ldaa,LDAB=ldab,LDAC=ldac,LDAD=ldad,LDARHMAX=ldarhmax &
+              ,LDARHTD=ldarhtd,LDATMIN=ldatmin,LDATMAX=ldatmax &
+              ,LDARHTD_DAMP=ldarhtd_damp,LDA_FLASH_MIN=lda_flash_min &
+             )
+   endif
+   endif
+   ENDIF
 
 #ifdef XEON_OPTIMIZED_WSM5
    ENDIF

@@ -34,9 +34,15 @@ SUBROUTINE calc_ts_locations( grid )
    REAL :: known_lat, known_lon
    CHARACTER (LEN=132) :: message
    CHARACTER (LEN=24) :: ts_profile_filename
+#if (WRF_CHEM == 1)
    INTEGER, PARAMETER :: TS_FIELDS = 8
    CHARACTER (LEN=2), DIMENSION(TS_FIELDS) :: &
       ts_file_endings = (/ 'UU', 'VV', 'PH', 'TH', 'QV' ,'WW', 'PR', 'O3'/)
+#else
+   INTEGER, PARAMETER :: TS_FIELDS = 7
+   CHARACTER (LEN=2), DIMENSION(TS_FIELDS) :: &
+      ts_file_endings = (/ 'UU', 'VV', 'PH', 'TH', 'QV' ,'WW', 'PR'/)
+#endif
    TYPE (PROJ_INFO) :: ts_proj
    TYPE (grid_config_rec_type) :: config_flags
 

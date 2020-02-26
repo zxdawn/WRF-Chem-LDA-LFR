@@ -215,6 +215,7 @@ CONTAINS
             config_flags%lightning_start_seconds,              &
             grid%ltngacttime,                                  &
             config_flags%flashrate_factor,                     &
+			grid%lfr,										   &
           ! IC:CG namelist settings
             config_flags%iccg_method,                          &
             config_flags%iccg_prescribed_num,                  &

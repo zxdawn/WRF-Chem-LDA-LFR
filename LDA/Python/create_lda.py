@@ -62,8 +62,8 @@ class entln(object):
         self.lon_0  = attrs['STAND_LON']
         self.cenlat = attrs['CEN_LAT']
         self.cenlon = attrs['CEN_LON']
-        self.i      = attrs['i_parent_end']
-        self.j      = attrs['j_parent_end']
+        self.i      = attrs['WEST-EAST_GRID_DIMENSION']
+        self.j      = attrs['SOUTH-NORTH_GRID_DIMENSION']
         self.dx     = attrs['DX']
         self.dy     = attrs['DY']
         self.mminlu = attrs['MMINLU']
@@ -96,7 +96,7 @@ class entln(object):
                 if m+delta < 60:
                     cond = (timestamp >= st.replace(hour=h, minute=m)) & (timestamp < st.replace(hour=h, minute=m+delta))
                 else:
-                    cond = (timestamp >= st.replace(hour=h, minute=m)) & (timestamp < st.replace(hour=h+1, minute=0)) 
+                    cond = (timestamp >= st.replace(hour=h, minute=m)) & (timestamp < st.replace(hour=h+1, minute=0))
 
                 # 2. -----Crop by type ----- #
                 self.ic = copy.deepcopy(scn)
@@ -111,7 +111,7 @@ class entln(object):
                     self.ic[vname] = self.ic[vname][cond_cg]
                 else:
                     self.ic[vname] = self.ic[vname][cond_ic]
-                
+
                 # Correct attrs
                 area_ic = SwathDefinition(lons=self.ic[vname].coords['longitude'], \
                                           lats=self.ic[vname].coords['latitude']
@@ -164,15 +164,15 @@ class entln(object):
         ds = xr.Dataset({'Times':Times, \
                          'LDACHECK':LDACHECK, \
                         },
-                         attrs={'TITLE': 'Created by Xin Zhang {}'.format(datetime.utcnow()), 
+                         attrs={'TITLE': 'Created by Xin Zhang {}'.format(datetime.utcnow()),
                                 'WEST-EAST_GRID_DIMENSION': self.i, \
                                 'SOUTH-NORTH_GRID_DIMENSION': self.j, \
                                 'BOTTOM-TOP_GRID_DIMENSION': self.eta, \
                                 'DX': self.dx, 'DY': self.dy, \
                                 'CEN_LAT': self.cenlat, 'CEN_LON': self.cenlon, \
                                 'TRUELAT1': self.lat_1, 'TRUELAT2': self.lat_2, \
-                                'MOAD_CEN_LAT': self.lat_0, 'MAP_PROJ': self.map, \
-                                'MMINLU': self.mminlu}
+                                'MOAD_CEN_LAT': self.lat_0, 'STAND_LON': self.lon_0, \
+                                'MAP_PROJ': self.map, 'MMINLU': self.mminlu}
                         )
 
         # save dataset to nc file

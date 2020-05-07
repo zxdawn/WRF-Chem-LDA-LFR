@@ -700,55 +700,55 @@ state    real  cu_co_ten      ikj     misc        1         -      -        "CU_
 # the two groups. The two files need to be modified are:
 # Search for "modify tendncy list here"
 #-------------------------------------------------------------------------------
-state  real  -          ikjf    conv_ct    1    -   -     - 
-state  real  conv_co    ikjf    conv_ct    1    -    r   "conv_co"      "ACCUMULATED CONV TRANSPORT FOR CO"    "ppmv"
-state  real  conv_o3    ikjf    conv_ct    1    -    r   "conv_o3"      "ACCUMULATED CONV TRANSPORT FOR O3"    "ppmv"
-state  real  conv_no    ikjf    conv_ct    1    -    r   "conv_no"      "ACCUMULATED CONV TRANSPORT FOR NO"    "ppmv"
-state  real  conv_no2   ikjf    conv_ct    1    -    r   "conv_no2"     "ACCUMULATED CONV TRANSPORT FOR NO2"   "ppmv"
-state  real  conv_hno3  ikjf    conv_ct    1    -    r   "conv_hno3"    "ACCUMULATED CONV TRANSPORT FOR HNO3"  "ppmv"
-state  real  conv_iso   ikjf    conv_ct    1    -    r   "conv_iso"     "ACCUMULATED CONV TRANSPORT FOR ISO"   "ppmv"
-state  real  conv_ho    ikjf    conv_ct    1    -    r   "conv_ho"      "ACCUMULATED CONV TRANSPORT FOR HO"    "ppmv"
-state  real  conv_ho2   ikjf    conv_ct    1    -    r   "conv_ho2"     "ACCUMULATED CONV TRANSPORT FOR HO2"   "ppmv"
+state  real  -          ikjf    conv_ct    1    -    -     - 
+state  real  conv_co    ikjf    conv_ct    1    -    rh   "conv_co"      "ACCUMULATED CONV TRANSPORT FOR CO"    "ppmv"
+state  real  conv_o3    ikjf    conv_ct    1    -    rh   "conv_o3"      "ACCUMULATED CONV TRANSPORT FOR O3"    "ppmv"
+state  real  conv_no    ikjf    conv_ct    1    -    rh   "conv_no"      "ACCUMULATED CONV TRANSPORT FOR NO"    "ppmv"
+state  real  conv_no2   ikjf    conv_ct    1    -    rh   "conv_no2"     "ACCUMULATED CONV TRANSPORT FOR NO2"   "ppmv"
+state  real  conv_hno3  ikjf    conv_ct    1    -    rh   "conv_hno3"    "ACCUMULATED CONV TRANSPORT FOR HNO3"  "ppmv"
+state  real  conv_iso   ikjf    conv_ct    1    -    rh   "conv_iso"     "ACCUMULATED CONV TRANSPORT FOR ISO"   "ppmv"
+state  real  conv_ho    ikjf    conv_ct    1    -    rh   "conv_ho"      "ACCUMULATED CONV TRANSPORT FOR HO"    "ppmv"
+state  real  conv_ho2   ikjf    conv_ct    1    -    rh   "conv_ho2"     "ACCUMULATED CONV TRANSPORT FOR HO2"   "ppmv"
 
-state  real  -          ikjf    chem_ct    1    -   -    -
-state  real  chem_co    ikjf    chem_ct    1    -    r   "chem_co"    "ACCUMULATED CHEM TENDENCY FOR CO"     "ppmv"
-state  real  chem_o3    ikjf    chem_ct    1    -    r   "chem_o3"    "ACCUMULATED CHEM TENDENCY FOR O3"     "ppmv"
-state  real  chem_no    ikjf    chem_ct    1    -    r   "chem_no"    "ACCUMULATED CHEM TENDENCY FOR NO"     "ppmv"
-state  real  chem_no2   ikjf    chem_ct    1    -    r   "chem_no2"   "ACCUMULATED CHEM TENDENCY FOR NO2"    "ppmv"
-state  real  chem_hno3  ikjf    chem_ct    1    -    r   "chem_hno3"  "ACCUMULATED CHEM TENDENCY FOR HNO3"   "ppmv"
-state  real  chem_iso   ikjf    chem_ct    1    -    r   "chem_iso"   "ACCUMULATED CHEM TENDENCY FOR ISO"    "ppmv"
-state  real  chem_ho    ikjf    chem_ct    1    -    r   "chem_ho"    "ACCUMULATED CHEM TENDENCY FOR HO"     "ppmv"
-state  real  chem_ho2   ikjf    chem_ct    1    -    r   "chem_ho2"   "ACCUMULATED CHEM TENDENCY FOR HO2"    "ppmv"
+state  real  -          ikjf    chem_ct    1    -    -    -
+state  real  chem_co    ikjf    chem_ct    1    -    rh   "chem_co"    "ACCUMULATED CHEM TENDENCY FOR CO"     "ppmv"
+state  real  chem_o3    ikjf    chem_ct    1    -    rh   "chem_o3"    "ACCUMULATED CHEM TENDENCY FOR O3"     "ppmv"
+state  real  chem_no    ikjf    chem_ct    1    -    rh   "chem_no"    "ACCUMULATED CHEM TENDENCY FOR NO"     "ppmv"
+state  real  chem_no2   ikjf    chem_ct    1    -    rh   "chem_no2"   "ACCUMULATED CHEM TENDENCY FOR NO2"    "ppmv"
+state  real  chem_hno3  ikjf    chem_ct    1    -    rh   "chem_hno3"  "ACCUMULATED CHEM TENDENCY FOR HNO3"   "ppmv"
+state  real  chem_iso   ikjf    chem_ct    1    -    rh   "chem_iso"   "ACCUMULATED CHEM TENDENCY FOR ISO"    "ppmv"
+state  real  chem_ho    ikjf    chem_ct    1    -    rh   "chem_ho"    "ACCUMULATED CHEM TENDENCY FOR HO"     "ppmv"
+state  real  chem_ho2   ikjf    chem_ct    1    -    rh   "chem_ho2"   "ACCUMULATED CHEM TENDENCY FOR HO2"    "ppmv"
 
-state  real  -          ikjf    vmix_ct    1    -   -    -
-state  real  vmix_co    ikjf    vmix_ct    1    -    r   "vmix_co"    "ACCUMULATED TENDENCY FOR CO BY VERTICAL MIXING"               "ppmv"
-state  real  vmix_o3    ikjf    vmix_ct    1    -    r   "vmix_o3"    "ACCUMULATED TENDENCY FOR O3 BY VERTICAL MIXING"               "ppmv"
-state  real  vmix_no    ikjf    vmix_ct    1    -    r   "vmix_no"    "ACCUMULATED TENDENCY FOR NO BY VERTICAL MIXING"               "ppmv"
-state  real  vmix_no2   ikjf    vmix_ct    1    -    r   "vmix_no2"   "ACCUMULATED TENDENCY FOR NO2 BY VERTICAL MIXING"              "ppmv"
-state  real  vmix_hno3  ikjf    vmix_ct    1    -    r   "vmix_hno3"  "ACCUMULATED TENDENCY FOR HNO3 BY VERTICAL MIXING"             "ppmv"
-state  real  vmix_iso   ikjf    vmix_ct    1    -    r   "vmix_iso"   "ACCUMULATED TENDENCY FOR ISO BY VERTICAL MIXING"              "ppmv"
-state  real  vmix_ho    ikjf    vmix_ct    1    -    r   "vmix_ho"    "ACCUMULATED TENDENCY FOR HO BY VERTICAL MIXING"               "ppmv"
-state  real  vmix_ho2   ikjf    vmix_ct    1    -    r   "vmix_ho2"   "ACCUMULATED TENDENCY FOR HO2 BY VERTICAL MIXING"              "ppmv"
+state  real  -          ikjf    vmix_ct    1    -    -    -
+state  real  vmix_co    ikjf    vmix_ct    1    -    rh   "vmix_co"    "ACCUMULATED TENDENCY FOR CO BY VERTICAL MIXING"               "ppmv"
+state  real  vmix_o3    ikjf    vmix_ct    1    -    rh   "vmix_o3"    "ACCUMULATED TENDENCY FOR O3 BY VERTICAL MIXING"               "ppmv"
+state  real  vmix_no    ikjf    vmix_ct    1    -    rh   "vmix_no"    "ACCUMULATED TENDENCY FOR NO BY VERTICAL MIXING"               "ppmv"
+state  real  vmix_no2   ikjf    vmix_ct    1    -    rh   "vmix_no2"   "ACCUMULATED TENDENCY FOR NO2 BY VERTICAL MIXING"              "ppmv"
+state  real  vmix_hno3  ikjf    vmix_ct    1    -    rh   "vmix_hno3"  "ACCUMULATED TENDENCY FOR HNO3 BY VERTICAL MIXING"             "ppmv"
+state  real  vmix_iso   ikjf    vmix_ct    1    -    rh   "vmix_iso"   "ACCUMULATED TENDENCY FOR ISO BY VERTICAL MIXING"              "ppmv"
+state  real  vmix_ho    ikjf    vmix_ct    1    -    rh   "vmix_ho"    "ACCUMULATED TENDENCY FOR HO BY VERTICAL MIXING"               "ppmv"
+state  real  vmix_ho2   ikjf    vmix_ct    1    -    rh   "vmix_ho2"   "ACCUMULATED TENDENCY FOR HO2 BY VERTICAL MIXING"              "ppmv"
 
-state  real  -          ikjf    advh_ct    1    -   -    -
-state  real  advh_co    ikjf    advh_ct    1    -    r   "advh_co"    "ACCUMULATED TENDENCY FOR CO BY HORIZONTAL ADVECTION"          "ppmv"
-state  real  advh_o3    ikjf    advh_ct    1    -    r   "advh_o3"    "ACCUMULATED TENDENCY FOR O3 BY HORIZONTAL ADVECTION"          "ppmv"
-state  real  advh_no    ikjf    advh_ct    1    -    r   "advh_no"    "ACCUMULATED TENDENCY FOR NO BY HORIZONTAL ADVECTION"          "ppmv"
-state  real  advh_no2   ikjf    advh_ct    1    -    r   "advh_no2"   "ACCUMULATED TENDENCY FOR NO2 BY HORIZONTAL ADVECTION"         "ppmv"
-state  real  advh_hno3  ikjf    advh_ct    1    -    r   "advh_hno3"  "ACCUMULATED TENDENCY FOR HNO3 BY HORIZONTAL ADVECTION"        "ppmv"
-state  real  advh_iso   ikjf    advh_ct    1    -    r   "advh_iso"   "ACCUMULATED TENDENCY FOR ISO BY HORIZONTAL ADVECTION"         "ppmv"
-state  real  advh_ho    ikjf    advh_ct    1    -    r   "advh_ho"    "ACCUMULATED TENDENCY FOR HO BY HORIZONTAL ADVECTION"          "ppmv"
-state  real  advh_ho2   ikjf    advh_ct    1    -    r   "advh_ho2"   "ACCUMULATED TENDENCY FOR HO2 BY HORIZONTAL ADVECTION"         "ppmv"
+state  real  -          ikjf    advh_ct    1    -    -    -
+state  real  advh_co    ikjf    advh_ct    1    -    rh   "advh_co"    "ACCUMULATED TENDENCY FOR CO BY HORIZONTAL ADVECTION"          "ppmv"
+state  real  advh_o3    ikjf    advh_ct    1    -    rh   "advh_o3"    "ACCUMULATED TENDENCY FOR O3 BY HORIZONTAL ADVECTION"          "ppmv"
+state  real  advh_no    ikjf    advh_ct    1    -    rh   "advh_no"    "ACCUMULATED TENDENCY FOR NO BY HORIZONTAL ADVECTION"          "ppmv"
+state  real  advh_no2   ikjf    advh_ct    1    -    rh   "advh_no2"   "ACCUMULATED TENDENCY FOR NO2 BY HORIZONTAL ADVECTION"         "ppmv"
+state  real  advh_hno3  ikjf    advh_ct    1    -    rh   "advh_hno3"  "ACCUMULATED TENDENCY FOR HNO3 BY HORIZONTAL ADVECTION"        "ppmv"
+state  real  advh_iso   ikjf    advh_ct    1    -    rh   "advh_iso"   "ACCUMULATED TENDENCY FOR ISO BY HORIZONTAL ADVECTION"         "ppmv"
+state  real  advh_ho    ikjf    advh_ct    1    -    rh   "advh_ho"    "ACCUMULATED TENDENCY FOR HO BY HORIZONTAL ADVECTION"          "ppmv"
+state  real  advh_ho2   ikjf    advh_ct    1    -    rh   "advh_ho2"   "ACCUMULATED TENDENCY FOR HO2 BY HORIZONTAL ADVECTION"         "ppmv"
 
-state  real  -          ikjf    advz_ct    1    -   -    -
-state  real  advz_co    ikjf    advz_ct    1    -    r   "advz_co"    "ACCUMULATED TENDENCY FOR CO BY VERTICAL ADVECTION"            "ppmv"
-state  real  advz_o3    ikjf    advz_ct    1    -    r   "advz_o3"    "ACCUMULATED TENDENCY FOR O3 BY VERTICAL ADVECTION"            "ppmv"
-state  real  advz_no    ikjf    advz_ct    1    -    r   "advz_no"    "ACCUMULATED TENDENCY FOR NO BY VERTICAL ADVECTION"            "ppmv"
-state  real  advz_no2   ikjf    advz_ct    1    -    r   "advz_no2"   "ACCUMULATED TENDENCY FOR NO2 BY VERTICAL ADVECTION"           "ppmv"
-state  real  advz_hno3  ikjf    advz_ct    1    -    r   "advz_hno3"  "ACCUMULATED TENDENCY FOR HNO3 BY VERTICAL ADVECTION"          "ppmv"
-state  real  advz_iso   ikjf    advz_ct    1    -    r   "advz_iso"   "ACCUMULATED TENDENCY FOR ISO BY VERTICAL ADVECTION"           "ppmv"
-state  real  advz_ho    ikjf    advz_ct    1    -    r   "advz_ho"    "ACCUMULATED TENDENCY FOR HO BY VERTICAL ADVECTION"            "ppmv"
-state  real  advz_ho2   ikjf    advz_ct    1    -    r   "advz_ho2"   "ACCUMULATED TENDENCY FOR HO2 BY VERTICAL ADVECTION"           "ppmv"
+state  real  -          ikjf    advz_ct    1    -    -    -
+state  real  advz_co    ikjf    advz_ct    1    -    rh   "advz_co"    "ACCUMULATED TENDENCY FOR CO BY VERTICAL ADVECTION"            "ppmv"
+state  real  advz_o3    ikjf    advz_ct    1    -    rh   "advz_o3"    "ACCUMULATED TENDENCY FOR O3 BY VERTICAL ADVECTION"            "ppmv"
+state  real  advz_no    ikjf    advz_ct    1    -    rh   "advz_no"    "ACCUMULATED TENDENCY FOR NO BY VERTICAL ADVECTION"            "ppmv"
+state  real  advz_no2   ikjf    advz_ct    1    -    rh   "advz_no2"   "ACCUMULATED TENDENCY FOR NO2 BY VERTICAL ADVECTION"           "ppmv"
+state  real  advz_hno3  ikjf    advz_ct    1    -    rh   "advz_hno3"  "ACCUMULATED TENDENCY FOR HNO3 BY VERTICAL ADVECTION"          "ppmv"
+state  real  advz_iso   ikjf    advz_ct    1    -    rh   "advz_iso"   "ACCUMULATED TENDENCY FOR ISO BY VERTICAL ADVECTION"           "ppmv"
+state  real  advz_ho    ikjf    advz_ct    1    -    rh   "advz_ho"    "ACCUMULATED TENDENCY FOR HO BY VERTICAL ADVECTION"            "ppmv"
+state  real  advz_ho2   ikjf    advz_ct    1    -    rh   "advz_ho2"   "ACCUMULATED TENDENCY FOR HO2 BY VERTICAL ADVECTION"           "ppmv"
 
 # deposition velocities for diagnostic package, feel free to add if you like!
 #

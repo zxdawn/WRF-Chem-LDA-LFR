@@ -3085,10 +3085,11 @@ halo      HALO_EM_PHYS_HCW   dyn_em 8:hailcast_wup_mask, hailcast_wdur
 
 # lightning
 
-state    real    ic_flashcount     ij     misc    1   -   rh    "ic_flashcount"      "Accumulated IC flash count"     "#"
-state    real    ic_flashrate      ij     misc    1   -   r     "ic_flashrate"       "IC flash rate"                  "#/s"
-state    real    cg_flashcount     ij     misc    1   -   rh    "cg_flashcount"      "Accumulated CG flash count"     "#"
-state    real    cg_flashrate      ij     misc    1   -   r     "cg_flashrate"       "CG flash rate"                  "#/s"
+state    real    ic_flashcount     ij     misc    1   -   rh       "ic_flashcount"      "Accumulated IC flash count"     "#"
+state    real    ic_flashrate      ij     misc    1   -   r        "ic_flashrate"       "IC flash rate"                  "#/s"
+state    real    cg_flashcount     ij     misc    1   -   rh       "cg_flashcount"      "Accumulated CG flash count"     "#"
+state    real    cg_flashrate      ij     misc    1   -   r        "cg_flashrate"       "CG flash rate"                  "#/s"
+state    real    lfr               ij     misc    1   -   i{16}rh  "lfr"                "lightning flash rate data"      "#/s"
 
 
 rconfig  integer    lightning_option         namelist,physics   max_domains    0      h    "lightning_option"          "Lightning flash parameterization"       ""
@@ -3110,7 +3111,9 @@ package	ltng_none           lightning_option==0            -       -
 package	ltng_crm_PR92w      lightning_option==1            -       state:ic_flashcount,ic_flashrate,cg_flashcount,cg_flashrate
 package ltng_crm_PR92z      lightning_option==2            -       state:ic_flashcount,ic_flashrate,cg_flashcount,cg_flashrate
 package	ltng_cpm_PR92z      lightning_option==11           -       state:ic_flashcount,ic_flashrate,cg_flashcount,cg_flashrate
-package	ltng_lpi            lightning_option==3           -        state:lpi
+package	ltng_lpi            lightning_option==3            -       state:lpi
+package ltng_lfr            lightning_option==16           -       state:ic_flashcount,ic_flashrate,cg_flashcount,cg_flashrate,lfr
+
 
 # lightning data assimilation
 state    real    ldacheck          ij     misc      1   -       i{17}rh  "LDACHECK"   "LDACHECK"   ""

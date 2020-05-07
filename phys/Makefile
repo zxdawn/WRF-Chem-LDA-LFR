@@ -184,6 +184,7 @@ MODULES = \
 	module_lightning_driver.o \
 	module_ltng_cpmpr92z.o \
 	module_ltng_crmpr92.o \
+    module_ltng_lfr.o \
 	module_ltng_iccg.o \
 	module_fdda_psufddagd.o \
 	module_fdda_spnudging.o \

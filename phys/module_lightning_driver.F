@@ -141,6 +141,12 @@
         WRITE(message, * ) ' lightning_init: LPIM lightning option selected: ', lightning_option
         CALL wrf_debug ( 100 , message )
 #endif
+
+    ! Read lightning flash rate data directly to model grids
+    CASE (ltng_lfr)
+        WRITE(message, * ) ' lightning_init: CRPM lightning option used: ', lightning_option
+        CALL wrf_debug ( 100 , message )
+
     ! Non-existing options
     CASE DEFAULT
         CALL wrf_error_fatal ( ' lightning_init: invalid lightning_option')
@@ -222,6 +228,7 @@
                             lightning_start_seconds,              &
                             ltngacttime,                          &
                             flashrate_factor,                     &
+                            lfr,                                  &
                           ! IC:CG namelist settings
                             iccg_method,                          &
                             iccg_prescribed_num,                  &
@@ -253,6 +260,7 @@
  USE module_ltng_crmpr92       ! lightning_option == 1,   ltng_crm_PR92w
                                ! lightning_option == 2,   ltng_crm_PR92z
  USE module_ltng_cpmpr92z      ! lightning_option == 11,  ltng_cpm_PR92z
+ USE module_ltng_lfr           ! lightning_option == 16,  ltng_lfr
 
 ! IC:CG methods
  USE module_ltng_iccg
@@ -281,6 +289,8 @@
  TYPE(WRFU_Time),                                           INTENT(IN   ) :: current_time  ! For use of IC:CG input
 
  REAL, DIMENSION( ims:ime, jms:jme ), INTENT(INOUT), OPTIONAL :: LPI
+ REAL, DIMENSION( ims:ime, jms:jme ), INTENT(IN   ), OPTIONAL :: lfr  ! lightning flash rate from lightning data
+
 ! Mandatory namelist inputs
  INTEGER, INTENT(IN   )    ::       lightning_option
  REAL,    INTENT(IN   )    ::       lightning_dt, lightning_start_seconds, flashrate_factor
@@ -438,6 +448,25 @@
         CALL wrf_error_fatal ( wrf_err_message )
         ENDIF
 #endif
+
+    CASE ( ltng_lfr )
+        IF (PRESENT(lfr))  THEN
+        CALL wrf_debug ( 0, ' lightning_driver: calling Xin et al. 2020 (Read lightning flash rate directly)' )
+
+        CALL readlfr ( &
+                  ! Scheme specific prognostics
+                    lfr,                                  &
+                  ! Order dependent args for domain, mem, and tile dims
+                    ids, ide, jds, jde, kds, kde,         &
+                    ims, ime, jms, jme, kms, kme,         &
+                    its, ite, jts, jte, kts, kte,         &
+                  ! Mandatory output for all quantitative schemes
+                    total_flashrate                       &
+                      )
+        ELSE
+        CALL wrf_error_fatal ( 'Missing argument for readlfr in lightning driver' )
+        ENDIF
+
 !   CASE ( another_cpm_option)
 
     ! Invalid lightning options

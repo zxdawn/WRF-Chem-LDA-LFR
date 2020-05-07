@@ -180,6 +180,7 @@ MODULES = \
 	module_mixactivate.o \
 	module_radiation_driver.o \
 	module_surface_driver.o \
+    module_lda.o \
 	module_lightning_driver.o \
 	module_ltng_cpmpr92z.o \
 	module_ltng_crmpr92.o \

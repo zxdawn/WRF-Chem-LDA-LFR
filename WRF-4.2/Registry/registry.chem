@@ -509,9 +509,9 @@ state    real  track_wc        {tr}       misc     1        -      -       "wc" 
 state    real  track_zref      {tz}       misc     1        -      -       "zref"               "reference height"           "km"
 
 # Tropopause
-state    real  tropo_p        ij      misc        1         -      r       "tropo_p"               "Tropopause pressure"                 "Pa"
-state    real  tropo_z        ij      misc        1         -      r       "tropo_z"               "Tropopause height"                   "meters"
-state integer  tropo_lev      ij      misc        1         -      r       "tropo_lev"             "Tropopause level"                    ""
+state    real  tropo_p        ij      misc        1         -      rh       "tropo_p"               "Tropopause pressure"                 "Pa"
+state    real  tropo_z        ij      misc        1         -      rh       "tropo_z"               "Tropopause height"                   "meters"
+state integer  tropo_lev      ij      misc        1         -      rh       "tropo_lev"             "Tropopause level"                    ""
 # wetdep diagnostics
 state    real  hno3_col_mdel  ij      misc        1         -       -      "HNO3_COL_MDEL"         "hno3 column mass change"             "kg"
 #

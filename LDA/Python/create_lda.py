@@ -44,6 +44,12 @@ entln_path = '/xin/data/ENGTLN/'
 output_dir = './lda/'
 domain = 'd01'
 
+wrf_projs = {1: 'lcc',
+             2: 'npstere',
+             3: 'merc',
+             6: 'eqc'
+             }
+
 # --------------- end paras --------------- #
 
 class entln(object):
@@ -55,32 +61,41 @@ class entln(object):
         # read basic info from geo file generrated by WPS
         self.geo = xr.open_dataset(wps_path + 'geo_em.'+domain+'.nc')
         attrs = self.geo.attrs
-        # read original attrs
-        self.lat_1  = attrs['TRUELAT1']
-        self.lat_2  = attrs['TRUELAT2']
-        self.lat_0  = attrs['MOAD_CEN_LAT']
-        self.lon_0  = attrs['STAND_LON']
-        self.cenlat = attrs['CEN_LAT']
-        self.cenlon = attrs['CEN_LON']
-        self.i      = attrs['WEST-EAST_GRID_DIMENSION']
-        self.j      = attrs['SOUTH-NORTH_GRID_DIMENSION']
-        self.dx     = attrs['DX']
-        self.dy     = attrs['DY']
+
+        self.map = attrs['MAP_PROJ']
         self.mminlu = attrs['MMINLU']
-        self.map    = attrs['MAP_PROJ']
-        self.eta    = attrs['BOTTOM-TOP_GRID_DIMENSION']
+        self.moad_cen_lat = attrs['MOAD_CEN_LAT']
+
+        self.dx = attrs['DX']
+        self.dy = attrs['DY']
+        self.stand_lon = attrs['STAND_LON']
+        self.lon_0 = attrs['CEN_LON']
+        self.lat_0 = attrs['CEN_LAT']
+        self.lat_1 = attrs['TRUELAT1']
+        self.lat_2 = attrs['TRUELAT2']
+        self.eta = attrs['BOTTOM-TOP_GRID_DIMENSION']
+        self.i = attrs['WEST-EAST_GRID_DIMENSION'] - 1
+        self.j = attrs['SOUTH-NORTH_GRID_DIMENSION'] - 1
 
         # calculate attrs for area definition
         shape = (self.j, self.i)
-        center = (0, 0)
-        radius = (self.i*self.dx/2, self.j*self.dy/2)
+        radius = (self.i*attrs['DX']/2, self.j*attrs['DY']/2)
 
         # create area as same as WRF
         area_id = 'wrf_circle'
-        proj_dict = {'proj': 'lcc', 'lat_0': self.lat_0, 'lon_0': self.lon_0, \
-                    'lat_1': self.lat_1, 'lat_2': self.lat_2, \
-                    'a':6370000, 'b':6370000}
-        self.area_def = AreaDefinition.from_circle(area_id, proj_dict, center, radius, shape=shape)
+        proj_dict = {'proj': wrf_projs[self.map],
+                     'lat_0': self.lat_0,
+                     'lon_0': self.lon_0,
+                     'lat_1': self.lat_1,
+                     'lat_2': self.lat_2,
+                     'a': 6370000,
+                     'b': 6370000}
+        center = (0, 0)
+        self.area_def = AreaDefinition.from_circle(area_id,
+                                                   proj_dict,
+                                                   center,
+                                                   radius,
+                                                   shape=shape)
 
     def crop(self, st, et, delta):
         # Crop data every 'delta' and split into IC and CG
@@ -164,14 +179,17 @@ class entln(object):
         ds = xr.Dataset({'Times':Times, \
                          'LDACHECK':LDACHECK, \
                         },
-                         attrs={'TITLE': 'Created by Xin Zhang {}'.format(datetime.utcnow()),
-                                'WEST-EAST_GRID_DIMENSION': self.i, \
-                                'SOUTH-NORTH_GRID_DIMENSION': self.j, \
+                         #attrs={'TITLE': 'OUTPUT FROM V4.1',
+                         attrs={'TITLE': 'OUTPUT FROM V4.1, Created by Xin Zhang {}'.format(datetime.utcnow()),
+                                'WEST-EAST_GRID_DIMENSION': self.i+1, \
+                                'WEST-EAST_PATCH_END_UNSTAG': self.i, \
+                                'SOUTH-NORTH_GRID_DIMENSION': self.j+1, \
+                                'SOUTH-NORTH_PATCH_END_UNSTAG': self.j, \
                                 'BOTTOM-TOP_GRID_DIMENSION': self.eta, \
                                 'DX': self.dx, 'DY': self.dy, \
-                                'CEN_LAT': self.cenlat, 'CEN_LON': self.cenlon, \
+                                'CEN_LAT': self.lat_0, 'CEN_LON': self.lon_0, \
                                 'TRUELAT1': self.lat_1, 'TRUELAT2': self.lat_2, \
-                                'MOAD_CEN_LAT': self.lat_0, 'STAND_LON': self.lon_0, \
+                                'MOAD_CEN_LAT': self.moad_cen_lat, 'STAND_LON': self.stand_lon , \
                                 'MAP_PROJ': self.map, 'MMINLU': self.mminlu}
                         )
 

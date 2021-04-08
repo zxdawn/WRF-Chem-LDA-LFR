@@ -5,13 +5,13 @@ Source: https://www.atmos.umd.edu/~yli/LDA_codes/
 
 
 ```
-NOTE: The new LDA codes are based on WRFV3.7.1. If you are not using WRFV3.7.1, do not copy the .F files. You can search "LDA" in every .F files, and add the LDA related codes to your WRF.
+NOTE: The new LDA codes are based on WRFV4.1.4. If you are not using WRFV4.1.4, do not copy the .F files. You can search "LDA" in every .F files, and add the LDA related codes to your WRF.
 
 Part one: WRF CODE
 
-(1) Copy Registry.EM, Registry.EM_COMMON, Registry.EM_CHEM to WRFV3/Registry/
-(2) copy solve_em.F to WRFV3/dyn_em/
-(3) copy module_microphysics_driver.F, module_lda.F, Makefile to WRFV3/phys/
+(1) Copy Registry.EM, Registry.EM_COMMON, Registry.EM_CHEM to Registry/
+(2) copy solve_em.F to dyn_em/
+(3) copy module_microphysics_driver.F, module_lda.F, Makefile to phys/
 (4) Then you can configure and compile.
 (5) before you run wrf, adding the following lines in your namelist.input 
  &time_control
@@ -55,7 +55,7 @@ Part Two: Prepare LDA flashes data.
 (2) Change line 16-29 in create_lda_wrffiles.pro
 (3) run create_lda_wrffiles.pro, then you will get wrflda_d<domain>_<date>
 (4) If you want to do LDA damping, you can run change_flash.pro
-(5) put wrflda_d<domain>_<date> under your WRFV3/test/em_real/
+(5) put wrflda_d<domain>_<date> under your test/em_real/
 
 Note: Before running WRF-LDA, you can use ncview to check the gridded flashes data in wrflda_d<domain>_<date>
 ```

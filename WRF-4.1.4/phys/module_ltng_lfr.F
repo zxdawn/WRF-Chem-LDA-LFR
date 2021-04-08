@@ -21,7 +21,7 @@
                             ims, ime, jms, jme, kms, kme,         &
                             ips, ipe, jps, jpe, kps, kpe,         &
                           ! Mandatory output for all quantitative schemes
-                            total_flashrate                       & 
+                            total_flashrate                       &
                 )
 !-----------------------------------------------------------------
 ! Framework
@@ -51,7 +51,7 @@
 ! we don't need to assign lfr to dBz >= *.
 ! IF ( maxval(cellcount(kps:kpe)) .eq. 0 ) RETURN
 ! Assign value directly
- total_flashrate( ips:ipe, jps:jpe ) = lfr
+ total_flashrate( ips:ipe, jps:jpe ) = lfr( ips:ipe, jps:jpe )
  END SUBROUTINE readlfr
  END MODULE module_ltng_lfr
 

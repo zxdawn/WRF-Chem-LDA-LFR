@@ -1,5 +1,7 @@
 # WRF-Chem-LDA-LFR
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4682332.svg)](https://doi.org/10.5281/zenodo.4682332)
+
 ## Authors
 
 [Xin Zhang](mailto:xinzhang1215@gmail.com) and [Yunyao Li](mailto:yli74@gmu.edu)

@@ -22,7 +22,7 @@ We provide two methods to create the gridded flashes data for LDA.
 
 ​	1) The Python scripts saved in `/LDA/Python`
 
-​	2) the IDL scripts in `/LDA/IDL`.
+​	2) The IDL scripts in `/LDA/IDL`.
 
 For the LDA concept, please check the following papers:
 
@@ -57,4 +57,8 @@ Please check the `README.md` under `LDA` and `LFR` directories.
 - Improving the convection simulation
 - Improving the lightning NO<sub>x</sub> estimation
 
-Feel free to use this model for your own research ;)
+## Publications
+
+Feel free to use this model for your own research and add the paper information below:
+
+- Xin Zhang et al. (2021). Influence of convection on the upper tropospheric O3 and NOx budget in China. In review.

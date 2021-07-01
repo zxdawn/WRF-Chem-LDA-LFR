@@ -33,10 +33,10 @@ maxhour = 12
 delta = 5  # unit: mintues
 
 # ----entln---- #
-ic_de = 0.50
-cg_de = 0.95
-only_cg = True
-iccg_ratio = 3
+ic_de = 0.50  # the detection efficiency of IC flash
+cg_de = 0.95  # the detection efficiency of CG flash
+only_cg = True  # Only input the CG data
+iccg_ratio = 3  # assume IC:CG is constant, such as 3
 
 # ----dir---- #
 wps_path = '/yin_raid/xin/tmp_lfr/v4.1.4/WPS/'

@@ -11,6 +11,12 @@ These are rewritten Python scripts by Xin Zhang based on Yunyao's IDL codes.
 - damping.py
 
   Set grid where no lightning happens to constant value (-1)
+  
+- entln.py and entln.yaml are the satpy reader of ENTLN data
+
+  You can put the .py file under `satpy/readers/` and the .yaml file under `satpy/etc/readers/` after you install the Satpy successfully.
+
+  To check the path of installed satpy, you can run this by Python: `import satpy; satpy.__file__`.
 
 ```
 NOTE: The new LDA codes are based on WRFV4.1.4. If you are not using WRFV4.1.4, do not copy the .F files. You can search "LDA" in every .F files, and add the LDA related codes to your WRF.
